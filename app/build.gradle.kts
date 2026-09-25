@@ -20,8 +20,8 @@ android {
         applicationId = "com.tdds.jh"
         minSdk = 32
         targetSdk = 37
-        versionCode = 4
-        versionName = "3.0.1"
+        versionCode = 5
+        versionName = "3.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
