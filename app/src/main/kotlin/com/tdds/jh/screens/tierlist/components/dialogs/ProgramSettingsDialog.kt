@@ -18,8 +18,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
-import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchDefaults
+import com.tdds.jh.ui.theme.AppSwitch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -88,10 +87,9 @@ fun ProgramSettingsDialog(
 
 @Composable
 private fun SettingsSwitchItem(text: String, checked: Boolean, onCheckedChange: (Boolean) -> Unit) {
-    val extendedColors = LocalExtendedColors.current
     Row(modifier = Modifier.fillMaxWidth().clickable { onCheckedChange(!checked) }.padding(vertical = 4.dp, horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
         Text(text = text, fontSize = 16.sp, color = MaterialTheme.colorScheme.onSurface, modifier = Modifier.weight(1f).padding(end = 12.dp), maxLines = 2, softWrap = true)
-        Switch(checked = checked, onCheckedChange = onCheckedChange, colors = SwitchDefaults.colors(checkedThumbColor = extendedColors.accentColor, checkedTrackColor = extendedColors.accentColor.copy(alpha = 0.5f), uncheckedThumbColor = MaterialTheme.colorScheme.outline, uncheckedTrackColor = MaterialTheme.colorScheme.surfaceVariant))
+        AppSwitch(checked = checked, onCheckedChange = onCheckedChange)
     }
 }
 
@@ -104,13 +102,12 @@ private fun SettingsClickableItem(text: String, onClick: () -> Unit) {
 
 @Composable
 private fun SettingsSliderItem(label: String, value: Float, onValueChange: (Float) -> Unit, valueRange: ClosedFloatingPointRange<Float>, unit: String) {
-    val extendedColors = LocalExtendedColors.current
     Column(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
             Text(text = label, fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurface)
-            Text(text = "${value.toInt()} $unit", fontSize = 14.sp, fontWeight = FontWeight.Medium, color = MaterialTheme.colorScheme.onSurface)
+            Text(text = "${value.toInt()} $unit", fontSize = 14.sp, fontWeight = FontWeight.Medium, color = MaterialTheme.colorScheme.primary)
         }
-        Slider(value = value, onValueChange = { val sv = (it / 5f).roundToInt() * 5f; onValueChange(sv) }, valueRange = valueRange, modifier = Modifier.padding(horizontal = 0.dp), colors = SliderDefaults.colors(thumbColor = extendedColors.accentColor, activeTrackColor = extendedColors.accentColor, inactiveTrackColor = MaterialTheme.colorScheme.surfaceVariant))
+        Slider(value = value, onValueChange = { val sv = (it / 5f).roundToInt() * 5f; onValueChange(sv) }, valueRange = valueRange, modifier = Modifier.padding(horizontal = 0.dp), colors = SliderDefaults.colors(thumbColor = MaterialTheme.colorScheme.primary, activeTrackColor = MaterialTheme.colorScheme.primary, inactiveTrackColor = MaterialTheme.colorScheme.surfaceVariant))
     }
 }
 

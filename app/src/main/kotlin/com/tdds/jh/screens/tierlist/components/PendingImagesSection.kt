@@ -104,7 +104,7 @@ fun PendingImagesSection(
                 },
             shape = RoundedCornerShape(8.dp),
             colors = CardDefaults.cardColors(
-                containerColor = extendedColors.surfaceVariant
+                containerColor = extendedColors.cardBackground
             )
         ) {
             Column(
