@@ -106,6 +106,8 @@ android {
 
     lint {
         disable += listOf("MissingTranslation")
+        // lint 不挂在 assembleRelease 上，改由 ./gradlew check / build / lintRelease 执行
+        checkReleaseBuilds = false
     }
 }
 
